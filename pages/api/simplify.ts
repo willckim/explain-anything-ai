@@ -19,18 +19,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: "Missing input, level, targetLanguage, or model" });
   }
 
-  // Rate limit GPT-4 usage by IP
+  // ✅ Rate-limit GPT-4 by IP address
   if (model === "gpt-4-0613") {
     const ip =
-      (req.headers["x-forwarded-for"] as string)?.split(",")[0] ||
-      req.socket.remoteAddress ||
+      (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ||
+      req.socket?.remoteAddress ||
       "unknown";
 
     const now = Date.now();
     const usage = gpt4Usage[ip];
 
     if (!usage || now - usage.lastReset > 60 * 60 * 1000) {
-      gpt4Usage[ip] = { count: 1, lastReset: now }; // reset or start
+      gpt4Usage[ip] = { count: 1, lastReset: now };
     } else if (usage.count >= GPT4_LIMIT) {
       return res.status(429).json({ error: "⚠️ GPT-4 usage limit reached for this hour." });
     } else {
@@ -42,19 +42,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const selectedModel = allowedModels.includes(model) ? model : "gpt-3.5-turbo";
 
   const systemMessage = `
-You are a helpful assistant that simplifies and explains text for language learners.
+You are a helpful assistant that simplifies and translates text.
 
-Tasks:
 1. Detect the input language.
-2. If it's not in "${targetLanguage}", translate it.
-3. Simplify the meaning using language appropriate for "${level}".
-4. Respond only with the explanation in "${targetLanguage}".
+2. If it's not in "${targetLanguage}", translate it to "${targetLanguage}".
+3. Rewrite the meaning in simplified form using ${level} style.
+4. Respond only in ${targetLanguage}.
 
-Use simple words and examples. Keep it brief and clear.
+Use short sentences, simple words, and analogies where helpful.
 `.trim();
 
   try {
-    const openaiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
@@ -70,21 +69,19 @@ Use simple words and examples. Keep it brief and clear.
       }),
     });
 
-    const data = await openaiResponse.json();
+    const data = await response.json();
 
-    const reply = data?.choices?.[0]?.message?.content?.trim();
-
-    if (!reply) {
-      console.error("OpenAI returned no content:", data);
-      return res.status(500).json({ error: "No response from OpenAI." });
+    if (!response.ok || !data?.choices?.[0]?.message?.content) {
+      console.error("OpenAI error:", data);
+      return res.status(500).json({ error: "OpenAI did not return a valid response." });
     }
 
     return res.status(200).json({
-      output: reply,
+      output: data.choices[0].message.content.trim(),
       model: selectedModel,
     });
   } catch (err) {
-    console.error("Error contacting OpenAI:", err);
-    return res.status(500).json({ error: "Something went wrong with OpenAI." });
+    console.error("OpenAI API fetch failed:", err);
+    return res.status(500).json({ error: "Something went wrong while calling OpenAI." });
   }
 }
