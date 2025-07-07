@@ -66,7 +66,7 @@ export default function Home() {
         <p className="text-center text-gray-600 text-sm">
           Paste any complex text, and this tool will help you:
           <br />
-          ✓ Understand it at a level you choose (ELI5, ELI10, Plain English)
+          ✓ Understand it at a level you choose (ELI5, Executive Summary, Legal, etc.)
           <br />
           ✓ Translate and simplify into your preferred language
           <br />
@@ -86,23 +86,34 @@ export default function Home() {
             <div className="mt-2 text-sm text-left text-gray-700 border border-gray-200 rounded p-3 bg-gray-50 space-y-3">
               <div>
                 <h3 className="font-semibold">🔍 What does this tool do?</h3>
-                <p>This tool simplifies and optionally translates any text you paste. You can choose how simple the result should be and in what language it should appear.</p>
+                <p>
+                  This tool simplifies and optionally translates any text you paste. You can choose how you'd like it explained — whether in very simple terms, legal summary, ADHD-friendly formatting, or a study guide. It supports multiple languages and GPT models.
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold">🧠 What do the simplification levels mean?</h3>
+                <h3 className="font-semibold">🧠 What do the explanation styles mean?</h3>
                 <ul className="list-disc list-inside ml-4">
-                  <li><strong>Explain like I’m 5 (ELI5):</strong> For very young kids. Uses very basic words and examples.<br /><em>Example: "Electricity is like magic that moves through wires to turn on lights."</em></li>
-                  <li><strong>Explain like I’m 10 (ELI10):</strong> Slightly more detail, for middle school level.<br /><em>Example: "Electricity is energy that flows through wires to power things like lights and TVs."</em></li>
-                  <li><strong>Plain English:</strong> Clear and concise language for teens/adults/ESL learners.<br /><em>Example: "Electricity is a type of energy that moves through wires and powers devices."</em></li>
+                  <li><strong>Explain like I’m 5 (ELI5):</strong> Very basic words and playful examples. <em>"Electricity is like magic that moves through wires to turn on lights."</em></li>
+                  <li><strong>Explain like I’m 10 (ELI10):</strong> More detail for middle schoolers. <em>"Electricity is energy that flows through wires to power things like lights and TVs."</em></li>
+                  <li><strong>Plain English:</strong> Jargon-free summary for adults/ESL learners. <em>"Electricity is a type of energy that moves through wires and powers devices."</em></li>
+                  <li><strong>Executive Summary:</strong> 3–5 key bullet points.</li>
+                  <li><strong>Legal Summary:</strong> Translate formal/legal text into plain English.</li>
+                  <li><strong>Medical Explanation:</strong> Make clinical language easy for patients to understand.</li>
+                  <li><strong>ADHD-Friendly:</strong> Chunked, bolded keywords, short text blocks.</li>
+                  <li><strong>Study Guide:</strong> Converts to bullet-style study notes or flashcards.</li>
                 </ul>
               </div>
               <div>
                 <h3 className="font-semibold">🌍 What languages can it output?</h3>
-                <p>It supports 15+ languages. Some less common languages may respond better using GPT-4. Translation is done automatically before simplification.</p>
+                <p>
+                  It currently supports 15+ languages. Less common ones may perform better with GPT-4. Translation happens before simplification.
+                </p>
               </div>
               <div>
                 <h3 className="font-semibold">⚙️ Which GPT model should I use?</h3>
-                <p>GPT-3.5 is fast and free. GPT-4 gives more accurate and natural-sounding results, especially for non-English languages or complex inputs.</p>
+                <p>
+                  GPT-3.5 is fast and free. GPT-4 is more accurate, especially for rare languages or nuanced text.
+                </p>
               </div>
             </div>
           )}
