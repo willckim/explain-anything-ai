@@ -49,8 +49,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     "Executive summary": "Summarize the content in 3–5 concise, high-level bullet points as if for a busy executive.",
     "Legal summary": "Translate legal or formal language into plain English without changing the meaning.",
     "Medical explanation": "Translate clinical or medical language into clear, everyday words for patients.",
-   "ADHD-friendly": "Break this down for someone with ADHD. Use short, simple bullet points with one emoji per line. Bold key terms. Avoid long paragraphs or fluff. Keep it energetic and highly scannable.",
-    "Study guide (student)": "Format this as clear, flashcard-style study notes. Use headings like Condition, Symptoms, Diagnosis, Treatment, and Definition. Use short bullet points. Add emojis where helpful. Highlight key terms in bold. Keep it concise for easy memorization.",
+   "ADHD-friendly": "Format this for someone with ADHD. Use 4–6 short bullet points. Start each line with an emoji. Bold key terms in each bullet. Avoid long paragraphs. Make it visual, concise, and easy to scan quickly.",
+    "Study guide (student)": "Summarize this like structured flashcard notes for a student. Use sections in this order: Symptoms, Diagnosis, Condition (with definition), Treatment, and Key Term. Use bullet points. Bold the key terms in each bullet. Add emojis to help visually separate sections. Keep it concise and easy to scan.",
   };
 
   const formatStyle = levelInstructions[level] || "Use clear and simple language appropriate to the reader.";
