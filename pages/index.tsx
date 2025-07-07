@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 
 export default function Home() {
@@ -52,19 +53,24 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-black py-10 px-4">
+      <Head>
+        <title>ExplainAnything.ai</title>
+        <meta name="description" content="Understand anything. In your words. At your pace." />
+      </Head>
+
       <div className="max-w-2xl mx-auto shadow-md rounded-xl p-8 space-y-6 bg-white">
         <h1 className="text-3xl font-bold text-center text-blue-700">
-          🧠 Explain Like I’m 5
+          🧠 ExplainAnything.ai
         </h1>
 
         <p className="text-center text-gray-600 text-sm">
-          Paste any complex text in any language, and this tool will:
+          Paste any complex text, and this tool will help you:
           <br />
-          ✓ Automatically detect the language
+          ✓ Understand it at a level you choose (ELI5, ELI10, Plain English)
           <br />
-          ✓ Translate it into your target language (below)
+          ✓ Translate and simplify into your preferred language
           <br />
-          ✓ Simplify it based on the level you choose (ELI5, ELI10, or Plain English)
+          ✓ Learn with clarity — medical, legal, academic, or casual
           <br />
           Powered by OpenAI GPT-3.5 or GPT-4
         </p>
@@ -113,19 +119,30 @@ export default function Home() {
         <div>
           <label className="block mb-2 font-medium">Simplification Level:</label>
           <select
-            value={level}
-            onChange={(e) => setLevel(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
-          >
-            <option>Explain like I’m 5</option>
-            <option>Explain like I’m 10</option>
-            <option>Plain English</option>
-          </select>
-          <p className="text-sm text-gray-500 mt-1">
-            <strong>ELI5:</strong> Very basic words, for young kids.<br />
-            <strong>ELI10:</strong> Simple school-level understanding.<br />
-            <strong>Plain English:</strong> Clear and concise for adults or ESL learners.
-          </p>
+  value={level}
+  onChange={(e) => setLevel(e.target.value)}
+  className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
+>
+  <option>Explain like I’m 5</option>
+  <option>Explain like I’m 10</option>
+  <option>Plain English</option>
+  <option>Executive summary</option>
+  <option>Legal summary</option>
+  <option>Medical explanation</option>
+  <option>ADHD-friendly</option>
+  <option>Study guide (student)</option>
+</select>
+          <p className="text-sm text-gray-500 mt-1 space-y-1">
+  <strong>ELI5:</strong> Uses very simple, playful language for young children.<br />
+  <strong>ELI10:</strong> Slightly more depth for a middle school reader.<br />
+  <strong>Plain English:</strong> Concise and jargon-free for general understanding.<br />
+  <strong>Executive summary:</strong> High-level overview in 3–5 bullet points.<br />
+  <strong>Legal summary:</strong> Explains formal/legal writing in plain terms.<br />
+  <strong>Medical explanation:</strong> Translates medical notes into understandable language.<br />
+  <strong>ADHD-friendly:</strong> Chunked text with bold highlights and structure.<br />
+  <strong>Study guide:</strong> Turns content into a mini study sheet or breakdown.
+</p>
+
         </div>
 
         <div>

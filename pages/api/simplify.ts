@@ -41,15 +41,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const allowedModels = ["gpt-3.5-turbo", "gpt-4-0613"];
   const selectedModel = allowedModels.includes(model) ? model : "gpt-3.5-turbo";
 
+  // 🔧 Map explanation level to custom prompt behavior
+  const levelInstructions: Record<string, string> = {
+    "Explain like I’m 5": "Use simple, playful language with very basic words, as if explaining to a 5-year-old.",
+    "Explain like I’m 10": "Use simple but informative language suitable for a 10-year-old.",
+    "Plain English": "Use clear and concise language for an adult or ESL learner with no jargon.",
+    "Executive summary": "Summarize the content in 3–5 concise, high-level bullet points as if for a busy executive.",
+    "Legal summary": "Translate legal or formal language into plain English without changing the meaning.",
+    "Medical explanation": "Translate clinical or medical language into clear, everyday words for patients.",
+    "ADHD-friendly": "Break the content into short, structured chunks. Use bolded keywords and avoid long paragraphs.",
+    "Study guide (student)": "Summarize the key points as if making a study guide or flashcard set for a student.",
+  };
+
+  const formatStyle = levelInstructions[level] || "Use clear and simple language appropriate to the reader.";
+
   const systemMessage = `
-You are a helpful assistant that simplifies and translates text.
+You are a helpful assistant that simplifies and optionally translates text.
 
 1. Detect the input language.
 2. If it's not in "${targetLanguage}", translate it to "${targetLanguage}".
-3. Rewrite the meaning in simplified form using ${level} style.
+3. Then rewrite the content based on this instruction: ${formatStyle}
 4. Respond only in ${targetLanguage}.
-
-Use short sentences, simple words, and analogies where helpful.
 `.trim();
 
   try {
