@@ -1,10 +1,6 @@
-<<<<<<< HEAD
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-=======
-import Head from "next/head";
-import { useState } from "react";
->>>>>>> 883ba2356cd19a0195fec05f6b24649811fd637a
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -63,15 +59,22 @@ export default function Home() {
     }
   };
 
-<<<<<<< HEAD
-  if (!mounted) return null; // prevent hydration mismatch
+  if (!mounted) return null;
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-black dark:text-white py-10 px-4">
+      <Head>
+        <title>ExplainAnything.ai</title>
+        <meta
+          name="description"
+          content="Understand anything. In your words. At your pace."
+        />
+      </Head>
+
       <div className="max-w-2xl mx-auto shadow-md rounded-xl p-8 space-y-6 bg-white dark:bg-gray-800">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-blue-700 dark:text-blue-400">
-            🧠 Explain Like I’m 5
+            🧠 ExplainAnything.ai
           </h1>
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -82,23 +85,7 @@ export default function Home() {
         </div>
 
         <p className="text-center text-gray-600 dark:text-gray-300 text-sm">
-          Paste any complex text in any language, and this tool will:
-=======
-  return (
-    <div className="min-h-screen bg-gray-100 text-black py-10 px-4">
-      <Head>
-        <title>ExplainAnything.ai</title>
-        <meta name="description" content="Understand anything. In your words. At your pace." />
-      </Head>
-
-      <div className="max-w-2xl mx-auto shadow-md rounded-xl p-8 space-y-6 bg-white">
-        <h1 className="text-3xl font-bold text-center text-blue-700">
-          🧠 ExplainAnything.ai
-        </h1>
-
-        <p className="text-center text-gray-600 text-sm">
           Paste any complex text, and this tool will help you:
->>>>>>> 883ba2356cd19a0195fec05f6b24649811fd637a
           <br />
           ✓ Understand it at a level you choose (ELI5, Executive Summary, Legal, etc.)
           <br />
@@ -121,38 +108,39 @@ export default function Home() {
               <div>
                 <h3 className="font-semibold">🔍 What does this tool do?</h3>
                 <p>
-                  This tool simplifies and optionally translates any text you paste. You can choose how you'd like it explained — whether in very simple terms, legal summary, ADHD-friendly formatting, or a study guide. It supports multiple languages and GPT models.
+                  This tool simplifies and optionally translates any text you
+                  paste. You can choose how you'd like it explained — whether
+                  in very simple terms, legal summary, ADHD-friendly
+                  formatting, or a study guide. It supports multiple languages
+                  and GPT models.
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold">🧠 What do the explanation styles mean?</h3>
                 <ul className="list-disc list-inside ml-4">
-<<<<<<< HEAD
-                  <li><strong>Explain like I’m 5 (ELI5):</strong> Very basic words and examples.<br /><em>Example: "Electricity is like magic that moves through wires to turn on lights."</em></li>
-                  <li><strong>Explain like I’m 10 (ELI10):</strong> Simple middle-school level.<br /><em>Example: "Electricity is energy that flows through wires to power things like lights and TVs."</em></li>
-                  <li><strong>Plain English:</strong> Clear and concise for adults or ESL learners.<br /><em>Example: "Electricity is a type of energy that moves through wires and powers devices."</em></li>
-=======
-                  <li><strong>Explain like I’m 5 (ELI5):</strong> Very basic words and playful examples. <em>"Electricity is like magic that moves through wires to turn on lights."</em></li>
-                  <li><strong>Explain like I’m 10 (ELI10):</strong> More detail for middle schoolers. <em>"Electricity is energy that flows through wires to power things like lights and TVs."</em></li>
-                  <li><strong>Plain English:</strong> Jargon-free summary for adults/ESL learners. <em>"Electricity is a type of energy that moves through wires and powers devices."</em></li>
+                  <li><strong>Explain like I’m 5 (ELI5):</strong> Very basic words and playful examples.</li>
+                  <li><strong>Explain like I’m 10 (ELI10):</strong> More detail for middle schoolers.</li>
+                  <li><strong>Plain English:</strong> Jargon-free summary for adults/ESL learners.</li>
                   <li><strong>Executive Summary:</strong> 3–5 key bullet points.</li>
                   <li><strong>Legal Summary:</strong> Translate formal/legal text into plain English.</li>
                   <li><strong>Medical Explanation:</strong> Make clinical language easy for patients to understand.</li>
                   <li><strong>ADHD-Friendly:</strong> Chunked, bolded keywords, short text blocks.</li>
                   <li><strong>Study Guide:</strong> Converts to bullet-style study notes or flashcards.</li>
->>>>>>> 883ba2356cd19a0195fec05f6b24649811fd637a
                 </ul>
               </div>
               <div>
                 <h3 className="font-semibold">🌍 What languages can it output?</h3>
                 <p>
-                  It currently supports 15+ languages. Less common ones may perform better with GPT-4. Translation happens before simplification.
+                  It currently supports 15+ languages. Less common ones may
+                  perform better with GPT-4. Translation happens before
+                  simplification.
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold">⚙️ Which GPT model should I use?</h3>
                 <p>
-                  GPT-3.5 is fast and free. GPT-4 is more accurate, especially for rare languages or nuanced text.
+                  GPT-3.5 is fast and free. GPT-4 is more accurate, especially
+                  for rare languages or nuanced text.
                 </p>
               </div>
             </div>
@@ -170,7 +158,6 @@ export default function Home() {
         <div>
           <label className="block mb-2 font-medium">Simplification Level:</label>
           <select
-<<<<<<< HEAD
             value={level}
             onChange={(e) => setLevel(e.target.value)}
             className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
@@ -178,33 +165,12 @@ export default function Home() {
             <option>Explain like I’m 5</option>
             <option>Explain like I’m 10</option>
             <option>Plain English</option>
+            <option>Executive summary</option>
+            <option>Legal summary</option>
+            <option>Medical explanation</option>
+            <option>ADHD-friendly</option>
+            <option>Study guide (student)</option>
           </select>
-=======
-  value={level}
-  onChange={(e) => setLevel(e.target.value)}
-  className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
->
-  <option>Explain like I’m 5</option>
-  <option>Explain like I’m 10</option>
-  <option>Plain English</option>
-  <option>Executive summary</option>
-  <option>Legal summary</option>
-  <option>Medical explanation</option>
-  <option>ADHD-friendly</option>
-  <option>Study guide (student)</option>
-</select>
-          <p className="text-sm text-gray-500 mt-1 space-y-1">
-  <strong>ELI5:</strong> Uses very simple, playful language for young children.<br />
-  <strong>ELI10:</strong> Slightly more depth for a middle school reader.<br />
-  <strong>Plain English:</strong> Concise and jargon-free for general understanding.<br />
-  <strong>Executive summary:</strong> High-level overview in 3–5 bullet points.<br />
-  <strong>Legal summary:</strong> Explains formal/legal writing in plain terms.<br />
-  <strong>Medical explanation:</strong> Translates medical notes into understandable language.<br />
-  <strong>ADHD-friendly:</strong> Chunked text with bold highlights and structure.<br />
-  <strong>Study guide:</strong> Turns content into a mini study sheet or breakdown.
-</p>
-
->>>>>>> 883ba2356cd19a0195fec05f6b24649811fd637a
         </div>
 
         <div>
